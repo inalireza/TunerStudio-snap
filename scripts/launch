@@ -1,5 +1,17 @@
 #!/bin/bash
 
+#VARS
+####################
+TSD="${SNAP_USER_DATA}/TunerStudioMS"
+SERIAL_DRIVER="${TSD}/lib/alternateLinuxDrivers/x86_64-linux:"
+####################
+
+# JAVA PATH
+########################################
+export JAVA_HOME=$SNAP/usr/lib/jvm/java-1.8.0-openjdk-$SNAP_ARCH
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+########################################
+
 set -e
 (
 	cd $SNAP_USER_DATA
@@ -8,5 +20,5 @@ set -e
 
 set -e
 (
-	$SNAP_USER_DATA/TunerStudioMS/./TunerStudio.sh
+	java -Dcom.ibm.crypto.provider.DoRSATypeChecking=false -Djava.settings.path=${TSD} -Duser.home=${TSD} -Djava.properties=${TSD}/TunerStudio.properties -Djava.library.path=${SERIAL_DRIVER}lib -cp ".:lib:plugins" -jar ${TSD}/TunerStudioMS.jar
 )

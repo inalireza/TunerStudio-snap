@@ -49,6 +49,7 @@ apps:
     environment: 
       JAVA_HOME: $SNAP/usr/lib/jvm/java-1.8.0-openjdk-amd64   
       PATH: $JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+      PYTHONPATH: $SNAP_DESKTOP_RUNTIME/usr/lib/python3.6/site-packages
       
 parts:
   tool:
